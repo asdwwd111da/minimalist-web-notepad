@@ -1,0 +1,10 @@
+# Railway 部署配置
+services:
+  - name: minimalist-web-notepad
+    build:
+      dockerfile: Dockerfile
+    envs:
+      PORT: 80
+    static:
+      path: /var/www/html
+      port: 80

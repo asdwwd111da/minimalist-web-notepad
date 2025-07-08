@@ -1,6 +1,9 @@
 Options -Indexes
 RewriteEngine On
-RewriteRule ^([a-zA-Z0-9_-]+)$ index.php?note=$1 [QSA]
+# 如果请求的资源是已存在的文件或目录，则不重写
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([a-zA-Z0-9_-]+)$ index.php?note=$1 [QSA,L]
 
 <IfModule mod_headers.c>
     Header set X-Robots-Tag: "noindex, nofollow"
